@@ -1,0 +1,388 @@
+global !p
+texMathZones = ['texMathZone' + x for x in ['', 'X', 'XX', 'Env', 'EnvStarred', 'Ensured']]
+texIgnoreMathZones = ['texMathTextArg']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+    synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+    try:
+        first = next(
+            i for i in reversed(synstackids)
+            if i in texIgnoreMathZoneIds or i in texMathZoneIds
+        )
+        return first != ignore
+    except StopIteration:
+        return False
+endglobal
+
+snippet ctex "" b
+\documentclass{ctexart}
+$1
+
+\begin{document}
+$2
+\end{document}
+endsnippet
+
+snippet thm "theorem" b
+\begin{thm}{${1:name}}
+$2
+\end{thm}
+endsnippet
+
+snippet show "" b
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[outputdir=output]{minted}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted, skins}
+\tcbset{listing engine=minted}
+\definecolor{bg}{rgb}{0.9,0.9,0.9}
+\definecolor{show}{rgb}{0.8, 0.9, 0.9}
+
+\begin{document}
+\begin{tcblisting}{minted language=tex,
+  skin=bicolor,
+%   listing side text,
+  colbacklower=show}
+$1
+\end{tcblisting}
+\end{document}
+endsnippet
+
+snippet shp "" b
+\usepackage[outputdir=output]{minted}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted, skins}
+\tcbset{listing engine=minted}
+\definecolor{bg}{rgb}{0.9,0.9,0.9}
+\definecolor{show}{rgb}{0.8, 0.9, 0.9}
+endsnippet
+
+snippet shc "" b
+\begin{tcblisting}{minted language=tex,
+  skin=bicolor,
+%   listing side text,
+  colbacklower=show}
+$1
+\end{tcblisting}
+endsnippet
+
+snippet tikz "" b
+\documentclass[tikz, border=1cm]{standalone}
+$1
+
+\begin{document}
+\begin{tikzpicture}
+$2
+\end{tikzpicture}
+\end{document}
+endsnippet
+
+snippet ctikz "" b
+\documentclass[tikz, border=1cm]{standalone}
+\usepackage{xeCJK}
+$1
+
+\begin{document}
+\begin{tikzpicture}
+$2
+\end{tikzpicture}
+\end{document}
+endsnippet
+
+snippet doc "" b
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+
+snippet no "note" b
+\documentclass[normal,blue]{elegantnote}
+\usepackage{scrextend}
+\setkomafont{labelinglabel}{\bfseries}
+\usepackage{caption}
+\usepackage{subfigure}
+${1:
+\setmonofont{DejaVu Sans Mono for Powerline}
+\usepackage[
+  newfloat,
+  cachedir=../output,
+  outputdir=../output]{minted}
+\definecolor{bg}{rgb}{0.85,0.85,0.85}
+\renewcommand{\theFancyVerbLine}{\ttfamily
+  \textcolor[rgb]{0,0,0}{\small
+  \oldstylenums{\arabic{FancyVerbLine}}}}
+\setminted{
+  autogobble,
+  breaklines,
+  bgcolor=bg,
+  linenos,
+  python3}
+\newminted{sh}{}
+\newminted{py}{}
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Code}
+}
+\begin{document}
+	$2
+\end{document}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:htpb}]
+	\centering
+	\includegraphics[width=${2:0.8}\textwidth]{$3}
+\end{figure}
+endsnippet
+
+
+snippet mc "minted code" i
+\begin{code}
+\captionof{listing}{$1}
+\begin{$2}
+$3
+\end{$2}
+\end{code}
+endsnippet
+
+
+snippet pr "preamble" b
+\usepackage{scrextend}
+\setkomafont{labelinglabel}{\bfseries}
+\usepackage{caption}
+\usepackage{subfigure}
+endsnippet
+
+snippet it "item" b
+\item[$1] $2
+endsnippet
+
+
+snippet pa "usepackage" b
+\\usepackage{$0}
+endsnippet
+
+snippet po "usepackage with option" b
+\\usepackage[$0]{$1}
+endsnippet
+
+snippet art "article" b
+\documentclass{article}
+$1
+
+\begin{document}
+
+\end{document}
+endsnippet
+
+
+snippet beg "begin{} / end{}" bA
+\begin{$1}
+${2:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet beo "begin{} / end{}" bA
+\begin{$1}$2
+${3:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet eq "equation" b
+\begin{equation}
+  $1
+\end{equation}
+endsnippet
+
+snippet ti "tikzpicture"
+\begin{tikzpicture}
+$1
+\end{tikzpicture}
+endsnippet
+
+snippet expl "" b
+\ExplSyntaxOn
+$1
+\ExplSyntaxOff
+endsnippet
+
+
+
+snippet py "pycode" b
+\begin{pycode}
+$1
+\end{pycode}
+endsnippet
+
+snippet make "" b
+\makeatletter
+$1
+\makeatother
+endsnippet
+
+
+
+snippet frame "frame" b
+\begin{frame}{$1}
+	${2:${VISUAL}}
+\end{frame}
+endsnippet
+
+snippet lab "labeling" b
+\begin{labeling}{$0}
+	\item[$1] $2
+\end{labeling}
+endsnippet
+
+snippet /tt "ttfamily" iA
+\{\\ttfamily $1\}
+endsnippet
+
+snippet /bemi "minted" bA
+\begin{minted}{$1}
+	$2
+\end{minted}
+$0
+endsnippet
+
+snippet /mi "mint" iA
+\mint{$1}{$2}
+endsnippet
+
+snippet /imi "mintinline" iA
+\mintinline{$1}{$2}
+endsnippet
+
+# snippet al "beamer alert" i
+# \alert{${1:${VISUAL}}}
+# endsnippet
+
+snippet ch "child"
+child {node {$1}}$0
+endsnippet
+
+
+snippet url "url" i
+\href{$1}{$2}
+endsnippet
+
+# 行内公式
+snippet mk "Math" wA
+$${1:${VISUAL}}$$0
+endsnippet
+
+# 行间公式
+snippet dm "Math" wA
+\[
+$1
+\]
+endsnippet
+
+# 下标
+context "math()"
+snippet '([A-Za-z])(\d)' "auto subscript" wr
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wr
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet ds "subscript" i
+_{$1\}$0
+endsnippet
+
+# 上标
+context "math()"
+snippet us "superscript" i
+^{$1}$0
+endsnippet
+
+# 分数
+# //生成空的分数
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+# 自动生成分数
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+# 括号生成分数
+context "math()"
+snippet '^.*\)/' "() Fraction" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+    if stripped[i] == ')': depth += 1
+    if stripped[i] == '(': depth -= 1
+    if depth == 0: break;
+    i -= 1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet i "" i
+\int_{$1}^{$2}$0
+endsnippet
+
+priority 1000
+context "math()"
+snippet ii "" i
+\iint\limits_{$1}$0
+endsnippet
+
+context "math()"
+snippet part "d/dx" i
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+context "math()"
+snippet lr "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+context "math()"
+snippet lr( "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+context "math()"
+snippet lr| "left| right|" i
+\left| ${1:${VISUAL}} \right| $0
+endsnippet
+
+context "math()"
+snippet lr{ "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+context "math()"
+snippet lrb "left\{ right\}" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+context "math()"
+snippet lr[ "left[ right]" i
+\left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+context "math()"
+snippet sq "" i
+\sqrt{$1}$0
+endsnippet
+

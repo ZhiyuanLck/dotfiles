@@ -1,0 +1,69 @@
+{
+  "coc.preferences.useQuickfixForLocations": false,
+  "coc.preferences.colorSupport": false,
+	"coc.preferences.extensionUpdateCheck": "weekly",
+	"coc.preferences.messageLevel": "error",
+	"coc.preferences.listOfWorkspaceEdit": "location",
+	"coc.preferences.semanticTokensHighlights": false,
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+	"suggest.completionItemKindLabels": {
+		"default": "",
+		"text": "",
+		"method": "",
+		"function": "ƒ",
+		"constructor": "",
+		"field": "料",
+		"variable": "",
+		"class": "",
+		"interface": "",
+		"module": "",
+		"property": "",
+		"unit": "",
+		"value": "",
+		"enum": "",
+		"keyword": "",
+		"snippet": "",
+		"color": "",
+		"file": "",
+		"reference": "渚",
+		"folder": "",
+		"enumMember": "",
+		"constant": "",
+		"struct": "פּ",
+		"event": "鬒",
+		"operator": "Ψ",
+		"typeParameter": ""
+	},
+	"diagnostic.errorSign": "",
+	"diagnostic.warningSign": "",
+	"diagnostic.infoSign": "",
+	"diagnostic.hintSign": "",
+	"diagnostic.floatConfig": {
+		"border": true,
+		"highlight": "Normal",
+		"maxWidth": 100,
+		"focusable": false
+	},
+	"diagnostic.signPriority": 20,
+	"diagnostic.enableHighlightLineNumber": false,
+	"diagnostic.locationlistUpdate": false,
+	"hover.floatConfig": {
+		"border": true,
+		"highlight": "Normal",
+		"maxWidth": 100,
+		"focusable": false
+	},
+	"signature.floatConfig": {
+		"border": true,
+		"highlight": "Normal",
+		"maxWidth": 100,
+		"focusable": false
+	},
+  "cSpell.enabled": false,
+  "sumneko-lua.enableNvimLuaDev": true,
+  "Lua.runtime.version": "LuaJIT",
+  "semanticTokens.filetypes": [
+    "*"
+  ],
+  "Lua.telemetry.enable": false
+}

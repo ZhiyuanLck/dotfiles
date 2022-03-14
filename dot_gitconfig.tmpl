@@ -1,0 +1,7 @@
+[user]
+	name = ZhiyuanLck
+	email = lichangkai225@qq.com
+{{ if not (contains "WSL" .chezmoi.kernel.osrelease) }}
+[url "https://hub.fastgit.org/"]
+	insteadOf = https://github.com/
+{{ end }}

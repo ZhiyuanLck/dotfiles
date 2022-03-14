@@ -1,0 +1,39 @@
+snippet top "话题" iA
+〔$1〕
+$0
+endsnippet
+
+snippet tg "兔兔瓜瓜" iA
+〔兔兔瓜瓜〕
+$1
+endsnippet
+
+snippet qu "quote" iA
+「${1:${VISUAL}}」$0
+endsnippet
+
+snippet talk "聊天" iA
+〔聊天｜$1〕
+$0
+endsnippet
+
+snippet mis "" iA
+〔白白犯错｜$1〕
+$0
+endsnippet
+
+global !p
+from datetime import date, timedelta
+def today():
+	return date.today().isoformat()
+def yesterday():
+	return (date.today() - timedelta(days=1)).isoformat()
+endglobal
+
+snippet to "today" b
+`!p snip.rv = today()`
+endsnippet
+
+snippet yes "yesterday" b
+`!p snip.rv = yesterday()`
+endsnippet

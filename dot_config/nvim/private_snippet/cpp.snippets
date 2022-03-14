@@ -1,0 +1,61 @@
+snippet cxx "bein" bA
+#include <iostream>$1
+
+using namespace std;
+
+int main() {
+	$2
+}
+endsnippet
+
+snippet th "bein" b
+#include <iostream>
+#include <thread>$1
+
+using namespace std;
+
+int main() {
+	$2
+}
+endsnippet
+
+snippet fun "function"
+${1:int} ${2:name}($3) {
+	$4
+}
+endsnippet
+
+snippet cl "class" b
+class ${1:Solution} {
+public:
+	$2
+};
+endsnippet
+
+snippet sr "class" b
+struct ${1:Solution} {
+	$2
+};
+endsnippet
+
+snippet inc "include" b
+#include <$1
+endsnippet
+
+snippet pr "print" b
+template<template<class, class...> class T, class H, class... Args>
+ostream& operator<<(ostream &os, const T<H, Args...> &obj) {
+    bool start = true;
+    for (auto v: obj) {
+        if (start) {
+            os << v;
+            start = false;
+        }
+        else {
+            os << ' ' << v;
+        }
+    }
+    os << '\n';
+    return os;
+}
+endsnippet
