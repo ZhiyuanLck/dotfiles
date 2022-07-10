@@ -12,6 +12,7 @@ local function lazy_plug()
   vim.cmd('pa neogen')
   vim.cmd('pa vim-fugitive')
   vim.cmd('pa gitsigns.nvim')
+  vim.cmd('pa luv-vimdocs')
   require('gitsigns').setup()
   vim.cmd('pa neogen')
   require('neogen').setup{enabled = true}
@@ -19,9 +20,9 @@ local function lazy_plug()
   require('plug.treesitter')
   require('plug.indent_line')
   require('plug.telescope')
-  vim.cmd([[au User CocNvimInit ++once lua require('plugs.coc').setup()]])
+  -- vim.cmd([[au User CocNvimInit ++once lua require('plugs.coc').setup()]])
   vim.cmd('pa coc.nvim')
-  -- require('plug.coc').setup()
+  require('plug.coc').setup()
   -- require('plug.coc')
 end
 
@@ -42,10 +43,10 @@ local function lazy_autocmd()
 
     aug Coc
       au!
-      au User CocLocationsChange ++nested lua require('plug.coc').jump2loc()
-      au User CocDiagnosticChange ++nested lua require('plug.coc').diagnostic_change()
-      au CursorHold * sil! call CocActionAsync('highlight', '', v:lua.require('plug.coc').hl_fallback)
-      au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+      " au User CocLocationsChange ++nested lua require('plug.coc').jump2loc()
+      " au User CocDiagnosticChange ++nested lua require('plug.coc').diagnostic_change()
+      " au CursorHold * sil! call CocActionAsync('highlight', '', v:lua.require('plug.coc').hl_fallback)
+      " au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
       au VimLeavePre * if get(g:, 'coc_process_pid', 0) | call system('kill -9 -- -' . g:coc_process_pid) | endif
     aug END
   ]])

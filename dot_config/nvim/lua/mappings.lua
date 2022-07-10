@@ -143,7 +143,7 @@ map('i', '<c-b>', [[coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" :
 
 map('n', '[d', '<Plug>(coc-diagnostic-prev)')
 map('n', ']d', '<Plug>(coc-diagnostic-next)')
-map('n', 'gd', [[<Cmd>lua require('plug.coc').go2def()<cr>]])
+map('n', 'gd', '<Plug>(coc-definition)')
 map('n', 'gy', '<Plug>(coc-type-definition)')
 map('n', 'gi', '<Plug>(coc-implementation)')
 map('n', 'gr', '<Plug>(coc-references-used)')

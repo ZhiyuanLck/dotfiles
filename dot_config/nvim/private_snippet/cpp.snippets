@@ -59,3 +59,12 @@ ostream& operator<<(ostream &os, const T<H, Args...> &obj) {
     return os;
 }
 endsnippet
+
+snippet h "" b
+#ifndef $1
+#define $1
+
+$0
+
+#endif /* $1 */
+endsnippet

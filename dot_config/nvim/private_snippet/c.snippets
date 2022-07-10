@@ -12,3 +12,33 @@ int main(int argc, char *argv[]) {
 }
 endsnippet
 
+snippet if "" b
+if ($1) {
+	$2
+}$0
+endsnippet
+
+snippet ife "" b
+if ($1) {
+	$2
+} else {
+	$3
+}$0
+endsnippet
+
+snippet wh "" b
+while ($1) {
+	$2
+}$0
+endsnippet
+
+snippet h "" b
+#ifndef $1
+#define $1
+
+$0
+
+#endif /* $1 */
+endsnippet
+
+

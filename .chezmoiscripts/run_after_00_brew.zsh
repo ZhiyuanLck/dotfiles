@@ -4,7 +4,7 @@
 if command -v brew &> /dev/null
 then
   # entr: for tmux-autoreload
-  brew install fzf tmux z.lua zplug entr
+  brew install fzf tmux z.lua zplug entr git curl wget
 else
   echo "brew not found"
 fi

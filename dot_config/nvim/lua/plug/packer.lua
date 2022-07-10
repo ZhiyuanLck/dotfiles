@@ -44,7 +44,7 @@ end
 return packer.startup({
   config = {
     opt_default = true,
-    display = {open_cmd = 'tabedit', keybindings = {prompt_revert = 'R', diff = 'D'}},
+    display = {open_cmd = 'tabedit', keybindings = {prompt_revert = 'r', diff = 'D'}},
   },
   function(use, use_rocks)
     use {'wbthomason/packer.nvim',
@@ -59,23 +59,15 @@ return packer.startup({
         end
       end
     }
+    use 'nanotee/luv-vimdocs'
     use {'ZhiyuanLck/smart-pairs', event = "InsertEnter",
-      -- config = function() require('pairs'):setup() end
-      config = function()
-        require('pairs'):setup{
-          -- default_opts = {
-          --   ['*'] = {
-          --     ignore_pre = '+'
-          --   }
-          -- }
-        }
-      end
+      config = function() require('pairs'):setup() end
     }
     use {'sirver/ultisnips'}
     use {'lervag/vimtex', ft = {'tex', 'plaintex'},
       setup = function() require('plug.tex') end
     }
-    use {'blackCauldron7/surround.nvim'}
+    use {'machakann/vim-sandwich'}
     use {'wellle/targets.vim'}
     use {'justinmk/vim-sneak', keys = {'<Plug>Sneak_s', '<Plug>Sneak_S'},
       setup = function()
